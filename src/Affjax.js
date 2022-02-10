@@ -4,8 +4,8 @@
 
 exports._ajax = function () {
   var platformSpecific = { };
-  if (typeof module !== "undefined" && module.require && !(typeof process !== "undefined" && process.versions["electron"])) {
-    // We are on node.js
+  if (typeof XMLHttpRequest === "undefined") {
+    // We are on node.js or electron main script
     platformSpecific.newXHR = function () {
       var XHR = module.require("xhr2");
       return new XHR();
